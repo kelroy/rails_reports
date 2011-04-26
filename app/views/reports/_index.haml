@@ -1,6 +1,7 @@
 
 %body
   %div
+    %p="Total: " + Currency.to_s(@report.total)
     -date_now = Time.now.strftime("%Y-%m-%d")
     -start_date = Time.now.strftime("%Y-%m-01")
     %form{:action => "/range", :method => "get", :name => "date_range_input"}
@@ -13,5 +14,17 @@
     %p
       -@start = params[:start_date]
       -@finish = params[:end_date]
+      -transactions = @report.generate
+      %table{:border => "1"}
+        %tr
+          %th Id
+          %th Total
+          %th Created At
+        -transactions.each do |transaction|
+          %tr
+            %td=transaction.id.to_s
+            %td=Currency.to_s(transaction.sum)
+            %td=transaction.created_at.strftime('%m-%d-%y %H:%M') 
 
     
+      
