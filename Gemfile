@@ -7,6 +7,7 @@ gem 'haml'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'activesupport'
 
 # Use unicorn as the web server
 # gem 'unicorn'
